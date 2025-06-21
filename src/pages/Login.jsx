@@ -12,7 +12,9 @@ function Login() {
       document.title = "Login | NoHunger"
     }, [])
     
-    const {setUser , googleLoginUser ,googleLoginDonor } = useContext(MyContext)
+    const {setUser ,
+      //  googleLoginUser ,googleLoginDonor
+       } = useContext(MyContext)
 
   const [showPass, setShowPass] = useState(false);
   const [errorMessage, setErrorMessage] = useState("")
@@ -55,20 +57,20 @@ function Login() {
   
   }
   
-  const handleGoogleLoginUser = ()=>{
-    googleLoginUser()
-    setTimeout(() => {
-      // setUser(res.data.user)
-      navigate("/")
-    }, 1000);
-  }
-  const handleGoogleLoginDonor = ()=>{
-    googleLoginDonor()
-    setTimeout(() => {
-      // setUser(res.data.user)
-      navigate("/")
-    }, 1000);
-  }
+  // const handleGoogleLoginUser = ()=>{
+  //   googleLoginUser()
+  //   setTimeout(() => {
+  //     // setUser(res.data.user)
+  //     navigate("/")
+  //   }, 1000);
+  // }
+  // const handleGoogleLoginDonor = ()=>{
+  //   googleLoginDonor()
+  //   setTimeout(() => {
+  //     // setUser(res.data.user)
+  //     navigate("/")
+  //   }, 1000);
+  // }
 
   return (
     <div className="flex justify-center items-center bg-violet-300 dark:bg-gray-800 min-h-[80vh]">
@@ -122,7 +124,7 @@ function Login() {
             <span>Don't have an account? <Link to={'/register'} className="text-red-500 font-bold" >Register</Link> </span>
           }
 
-          <button onClick={handleGoogleLoginUser} className="btn bg-white text-black border-[#e5e5e5] hover:scale-101 mt-2">
+          {/* <button onClick={handleGoogleLoginUser} className="btn bg-white text-black border-[#e5e5e5] hover:scale-101 mt-2">
             <svg
               aria-label="Google logo"
               width="16"
@@ -181,7 +183,7 @@ function Login() {
               </g>
             </svg>
             Login with Google as a Donor
-          </button>
+          </button> */}
         </fieldset>
       </form>
     </div>

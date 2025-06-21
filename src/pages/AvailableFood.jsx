@@ -3,7 +3,7 @@ import axios from "axios";
 import { MyContext } from "../context/Context";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { toast, ToastContainer } from "react-toastify";
+// import { toast, ToastContainer } from "react-toastify";
 import { Link } from "react-router";
 import { FaTableCells } from "react-icons/fa6";
 import { PiCardsFill } from "react-icons/pi";
@@ -17,10 +17,11 @@ function AvailableFood() {
     AOS.init({ duration: 1200, once: false });
   }, []);
 
+  // const [showModal, setShowModal] = useState(false);
   const [availableFood, setAvailableFood] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const { user, toggleCardView, isCardView } = useContext(MyContext);
-  const [foodReq, setFoodReq] = useState([]);
+  // const [foodReq, setFoodReq] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -55,73 +56,74 @@ function AvailableFood() {
     fetchFood();
   }, [sortOrder]);
 
-  useEffect(() => {
-    const fetchFoodReq = async () => {
-      try {
-        const res = await axios.get(
-          `https://nohunger-project.vercel.app/api/request/requests-by-user/${user._id}`
-        );
-        setFoodReq(res.data.requests);
-      } catch (error) {
-        console.error("Error fetching food requests:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchFoodReq = async () => {
+  //     try {
+  //       const res = await axios.get(
+  //         `https://nohunger-project.vercel.app/api/request/requests-by-user/${user._id}`
+  //       );
+  //       setFoodReq(res.data.requests);
+  //     } catch (error) {
+  //       console.error("Error fetching food requests:", error);
+  //     }
+  //   };
 
-    fetchFoodReq();
-  }, []);
+  //   fetchFoodReq();
+  // }, []);
 
-  const handleFoodRequest = async (foodId) => {
-    try {
-      const res = await axios.post(
-        "https://nohunger-project.vercel.app/api/request/create-request",
-        {
-          foodId: foodId,
-          requesterId: user._id,
-        }
-      );
+  // const handleFoodRequest = async (foodId) => {
+  //   try {
+  //     const res = await axios.post(
+  //       "https://nohunger-project.vercel.app/api/request/create-request",
+  //       {
+  //         foodId: foodId,
+  //         requesterId: user._id,
+  //       }
+  //     );
 
-      if (res.data.success) {
-        toast.success(res.data.message);
-        setFoodReq((prev) => [...prev, res.data.request]);
-      } else {
-        toast.warn(res.data.message);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      toast.error("Something went wrong");
-    }
-  };
+  //     if (res.data.success) {
+  //       toast.success(res.data.message);
+  //       setShowModal(false);
+  //       setFoodReq((prev) => [...prev, res.data.request]);
+  //     } else {
+  //       toast.warn(res.data.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //     toast.error("Something went wrong");
+  //   }
+  // };
 
-  const cancelFoodReq = async (foodId) => {
-    try {
-      await axios.delete(
-        `https://nohunger-project.vercel.app/api/request/cancel-request/${foodId}`,
-        {
-          data: { userId: user._id },
-        }
-      );
+  // const cancelFoodReq = async (foodId) => {
+  //   try {
+  //     await axios.delete(
+  //       `https://nohunger-project.vercel.app/api/request/cancel-request/${foodId}`,
+  //       {
+  //         data: { userId: user._id },
+  //       }
+  //     );
 
-      setFoodReq((prev) =>
-        prev.filter((req) => {
-          const matchFoodId =
-            typeof req.foodId === "object" ? req.foodId._id : req.foodId;
-          return !(matchFoodId === foodId && req.requesterId === user._id);
-        })
-      );
+  //     setFoodReq((prev) =>
+  //       prev.filter((req) => {
+  //         const matchFoodId =
+  //           typeof req.foodId === "object" ? req.foodId._id : req.foodId;
+  //         return !(matchFoodId === foodId && req.requesterId === user._id);
+  //       })
+  //     );
 
-      toast.success("Request cancelled successfully");
-    } catch (error) {
-      console.error("Cancel error:", error);
-      toast.error("Failed to cancel request");
-    }
-  };
+  //     toast.success("Request cancelled successfully");
+  //   } catch (error) {
+  //     console.error("Cancel error:", error);
+  //     toast.error("Failed to cancel request");
+  //   }
+  // };
 
-  const alreadyRequested = (foodId) =>
-    foodReq.some((req) => {
-      const reqFoodId =
-        typeof req.foodId === "object" ? req.foodId._id : req.foodId;
-      return req.requesterId === user._id && reqFoodId === foodId;
-    });
+  // const alreadyRequested = (foodId) =>
+  //   foodReq.some((req) => {
+  //     const reqFoodId =
+  //       typeof req.foodId === "object" ? req.foodId._id : req.foodId;
+  //     return req.requesterId === user._id && reqFoodId === foodId;
+  //   });
 
   const totalPages = Math.ceil(availableFood.length / itemsPerPage);
   const paginatedFoods = availableFood.slice(
@@ -131,7 +133,7 @@ function AvailableFood() {
 
   return (
     <div className="p-6 bg-violet-300 dark:bg-gray-800 min-h-[70vh]">
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <div className="w-[90%] mx-auto">
         <h2 className="text-2xl font-bold mb-4 text-center dark:text-white">
           All Available Food
@@ -235,14 +237,14 @@ function AvailableFood() {
                   {food.additionalNotes.slice(0, 250)}
                 </p>
 
-                <div className="flex justify-center mt-5">
-                  {food.postedBy === user._id ? (
+                <div className="flex justify-center mt-5 gap-2">
+                  {/* {food.postedBy === user._id ? (
                     <button disabled className="btn bg-violet-500">
                       Your post
                     </button>
                   ) : user.role === "donor" ? (
                     <button disabled className="btn bg-violet-500">
-                      Donor Can't request
+                      Donor Can't
                     </button>
                   ) : alreadyRequested(food._id) ? (
                     <button
@@ -253,13 +255,20 @@ function AvailableFood() {
                     </button>
                   ) : (
                     <button
-                      onClick={() => handleFoodRequest(food._id)}
+                    onClick={() => setShowModal(true)}
                       className="btn bg-violet-400 hover:bg-violet-500"
                     >
                       Request
                     </button>
-                  )}
+                  )} */}
+                   <Link
+                        to={`/food-details/${food._id}`}
+                        className="btn bg-violet-400 hover:bg-violet-500"
+                      >
+                        View More...
+                      </Link>
                 </div>
+               
               </div>
             ))}
           </div>
@@ -273,7 +282,7 @@ function AvailableFood() {
                   <th className="py-2 px-4">Location</th>
                   <th className="py-2 px-4">Expired In</th>
                   <th className="py-2 px-4">Status</th>
-                  <th className="py-2 px-4">Action</th>
+                  {/* <th className="py-2 px-4">Action</th> */}
                   <th className="py-2 px-4">View More</th>
                 </tr>
               </thead>
@@ -292,7 +301,7 @@ function AvailableFood() {
                     <td className="py-2 px-4 text-green-500">
                       {food.foodStatus}
                     </td>
-                    <td className="py-2 px-4">
+                    {/* <td className="py-2 px-4">
                       {food.postedBy === user._id ? (
                         <button disabled className="btn bg-violet-500 ">
                           Your post
@@ -310,13 +319,13 @@ function AvailableFood() {
                         </button>
                       ) : (
                         <button
-                          onClick={() => handleFoodRequest(food._id)}
+                        onClick={() => setShowModal(true)}
                           className="btn bg-violet-400 hover:bg-violet-500"
                         >
                           Request
                         </button>
                       )}
-                    </td>
+                    </td> */}
                     <td className="py-2 px-4">
                       <Link
                         to={`/food-details/${food._id}`}
@@ -327,10 +336,13 @@ function AvailableFood() {
                     </td>
                   </tr>
                 ))}
+                
               </tbody>
             </table>
+            
           </div>
         )}
+      
 
         {availableFood.length > itemsPerPage && (
           <div className="flex justify-center mt-6 flex-wrap gap-2">
