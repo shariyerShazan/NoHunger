@@ -6,10 +6,12 @@ import Footer from '../components/Footer'
 function MainLayout() {
   return (
     <div>
-      <Navbar />
+    <Navbar />
+    <div className="pt-[64px]">
       <Outlet />
-      <Footer />
     </div>
+    <Footer />
+  </div>
   )
 }
 

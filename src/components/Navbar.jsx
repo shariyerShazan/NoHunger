@@ -56,7 +56,7 @@ function Navbar() {
   }
 
   return (
-    <div className=' bg-violet-400 dark:bg-gray-900 dark:text-white shadow-md w-full fixed'>
+    <div className=' bg-violet-400 dark:bg-gray-900 dark:text-white shadow-md fixed top-0 left-0 w-full z-10'>
       <div className="navbar  w-[90%] mx-auto ">
       <div className="navbar-start">
         <div className="dropdown">
