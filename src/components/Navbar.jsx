@@ -22,6 +22,7 @@ function Navbar() {
 
   const links = [
     { to: "/", label: "Home" , logo: <FaHome /> },
+    {to: '/available-foods' , label: 'Available Food' , logo: <MdEventAvailable /> },
     { to: "/about", label: "About" , logo: <FcAbout /> },
   ];
   const userLinks = [
