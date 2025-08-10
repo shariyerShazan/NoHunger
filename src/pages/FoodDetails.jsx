@@ -47,8 +47,8 @@ function FoodDetails() {
 
   const handleFoodRequest = async () => {
     if(!user){
-      toast.warn("Please login first")
       navigate("/login")
+      toast.warn("Please login first")
     }
     try {
       const res = await axios.post(
