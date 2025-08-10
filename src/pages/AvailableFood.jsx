@@ -233,9 +233,9 @@ function AvailableFood() {
                   <span className="font-bold">Location:</span>{" "}
                   {food.pickLocation}
                 </p>
-                <p className="h-30 text-sm text-gray-600 mt-2">
+                {/* <p className="h-30 text-sm text-gray-600 mt-2">
                   {food.additionalNotes.slice(0, 250)}
-                </p>
+                </p> */}
 
                 <div className="flex justify-center mt-5 gap-2">
                   {/* {food.postedBy === user._id ? (
