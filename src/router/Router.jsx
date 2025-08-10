@@ -59,9 +59,9 @@ export const router = createBrowserRouter([
       {
         path: "available-foods",
         element: (
-          <PrivateRoute>
+          // <PrivateRoute>
             <AvailableFood />
-          </PrivateRoute>
+          // </PrivateRoute>
         ),
       },
       {
@@ -95,9 +95,9 @@ export const router = createBrowserRouter([
       {
         path: "food-details/:id",
         element: (
-          <PrivateRoute>
+          // <PrivateRoute>
             <FoodDetails />
-          </PrivateRoute>
+          // </PrivateRoute>
         ),
       },
     ],

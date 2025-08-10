@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import axios from 'axios';
 import { MyContext } from '../context/Context';
 import { toast, ToastContainer } from 'react-toastify';
 
 function FoodDetails() {
+  const navigate = useNavigate()
   useEffect(() => {
     document.title = "FoodDetails | NoHunger"
   }, [])
@@ -17,6 +18,7 @@ function FoodDetails() {
   const [additionalNotes, setAdditionalNotes] = useState("");
 
   useEffect(() => {
+    
     const fetchFoodDetails = async () => {
       try {
         const res = await axios.get(`https://nohunger-project.vercel.app/api/food/get-post-by-id/${id}`);
@@ -44,6 +46,10 @@ function FoodDetails() {
   }, [user]);
 
   const handleFoodRequest = async () => {
+    if(!user){
+      toast.warn("Please login first")
+      navigate("/login")
+    }
     try {
       const res = await axios.post(
         "https://nohunger-project.vercel.app/api/request/create-request",
@@ -123,17 +129,17 @@ function FoodDetails() {
         <p className="mt-4"><strong>Created At:</strong> {food.createdAt.slice(0, 10)}</p>
 
         <div className="mt-6 flex gap-4">
-          {food.postedBy === user._id ? (
+          {food?.postedBy === user?._id ? (
             <button disabled className="btn bg-violet-500 cursor-not-allowed">
               Your post
             </button>
-          ) : user.role === "donor" ? (
+          ) : user?.role === "donor" ? (
             <button disabled className="btn bg-violet-500 cursor-not-allowed">
               Donor Can't Request
             </button>
-          ) : alreadyRequested(food._id) ? (
+          ) : alreadyRequested(food?._id) ? (
             <button
-              onClick={() => cancelFoodReq(food._id)}
+              onClick={() => cancelFoodReq(food?._id)}
               className="btn bg-red-400 hover:bg-red-500"
             >
               Cancel Request
