@@ -37,7 +37,7 @@ function TopQuantitySection() {
       <div className="w-[90%] mx-auto">
         <h2 className="text-5xl font-bold mb-6 text-center dark:text-white">Top Quantity Foods</h2>
 
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  justify-center gap-6">
           {topFoods.map((food, index) => (
             <div
               data-aos="fade-up"
