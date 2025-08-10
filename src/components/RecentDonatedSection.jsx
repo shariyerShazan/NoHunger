@@ -48,9 +48,9 @@ function RecentDonatedSection() {
                 className="w-full h-40 object-cover rounded mb-3 opacity-70 group-hover:opacity-100 duration-300"
               />
               <h3 className="text-xl font-bold text-violet-500">{food.foodName}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+              {/* <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
                 {food.additionalNotes.slice(0, 100)}...
-              </p>
+              </p> */}
               <p className="mt-2">
                 <span className="font-bold dark:text-white">Donated On:</span>{" "}
                 <span className="text-green-500">{food.createdAt.slice(0, 10)}</span>
