@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 function BannerOne() {
 
   const imageUrls = [
-    "https://www.bluechipfcu.org/wp-content/uploads/2019/11/food-donation-scaled.jpeg",
+    "https://c8.alamy.com/comp/2BTXCHC/different-food-and-text-donate-on-wooden-background-top-view-donation-concept-2BTXCHC.jpg",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqUam_R_EwZ-1Gv1zKu7eXtsohJY8MJJp4dBW2ikMaKd9FXDH0ymx-m7YXDjWUeICdCtc&usqp=CAU",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0QX825RkOgrOsGE6RVm4Nre3x1HMxMcpWTw&s",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSknYCtq42Sam5PxiCryV2CFGSOgFrGyhccVlVvymy5xoVxuckq5SevoHhwLnrbp1VYOdk&usqp=CAU",

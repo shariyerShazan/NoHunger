@@ -67,27 +67,27 @@ const MyProvider = ({ children }) => {
         _id: res.user.uid,
         role: "user",
       };
-      setUser(googleUser);
+      return googleUser;
     } catch (err) {
       console.error("Google login failed", err);
     }
   };
 
-  const googleLoginDonor = async () => {
-    try {
-      const res = await signInWithPopup(auth, googleProvider);
-      const googleUser = {
-        fullName: res.user.displayName,
-        photoURL: res.user.photoURL,
-        email: res.user.email,
-        _id: res.user.uid,
-        role: "donor",
-      };
-      setUser(googleUser);
-    } catch (err) {
-      console.error("Google login failed", err);
-    }
-  };
+  // const googleLoginDonor = async () => {
+  //   try {
+  //     const res = await signInWithPopup(auth, googleProvider);
+  //     const googleUser = {
+  //       fullName: res.user.displayName,
+  //       photoURL: res.user.photoURL,
+  //       email: res.user.email,
+  //       _id: res.user.uid,
+  //       role: "donor",
+  //     };
+  //     setUser(googleUser);
+  //   } catch (err) {
+  //     console.error("Google login failed", err);
+  //   }
+  // };
 
   const logoutUser = async () => {
     try {
@@ -107,7 +107,6 @@ const MyProvider = ({ children }) => {
     user,
     setUser,
     googleLoginUser,
-    googleLoginDonor,
     logoutUser,
   };
 

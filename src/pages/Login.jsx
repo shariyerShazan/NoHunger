@@ -13,7 +13,8 @@ function Login() {
     }, [])
     
     const {setUser ,
-      //  googleLoginUser ,googleLoginDonor
+       googleLoginUser ,
+      // googleLoginDonor
        } = useContext(MyContext)
 
   const [showPass, setShowPass] = useState(false);
@@ -57,20 +58,22 @@ function Login() {
   
   }
   
-  // const handleGoogleLoginUser = ()=>{
-  //   googleLoginUser()
-  //   setTimeout(() => {
-  //     // setUser(res.data.user)
-  //     navigate("/")
-  //   }, 1000);
-  // }
-  // const handleGoogleLoginDonor = ()=>{
-  //   googleLoginDonor()
-  //   setTimeout(() => {
-  //     // setUser(res.data.user)
-  //     navigate("/")
-  //   }, 1000);
-  // }
+  const handleGoogleLoginUser =async ()=>{
+    try {
+      const googleUser = await googleLoginUser();
+     
+
+      const res = await axios.post(`https://nohunger-project.vercel.app/api/users/firebase`, googleUser, { withCredentials: true });
+
+      if (res.data.success) {
+       setUser(res.data.user);
+        toast.success(res.data.message || "Login successful");
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error(error.message || "Google login failed");
+    }
+  }
 
   return (
     <div className="flex justify-center items-center bg-violet-300 dark:bg-gray-800 min-h-[80vh]">
@@ -124,7 +127,7 @@ function Login() {
             <span>Don't have an account? <Link to={'/register'} className="text-red-500 font-bold" >Register</Link> </span>
           }
 
-          {/* <button onClick={handleGoogleLoginUser} className="btn bg-white text-black border-[#e5e5e5] hover:scale-101 mt-2">
+          <button onClick={handleGoogleLoginUser} className="btn bg-white text-black border-[#e5e5e5] hover:scale-101 mt-2">
             <svg
               aria-label="Google logo"
               width="16"
@@ -154,7 +157,7 @@ function Login() {
             </svg>
             Login with Google as a User
           </button>
-          <button onClick={handleGoogleLoginDonor} className="btn bg-white text-black border-[#e5e5e5] hover:scale-101 mt-2">
+          {/* <button onClick={handleGoogleLoginDonor} className="btn bg-white text-black border-[#e5e5e5] hover:scale-101 mt-2">
             <svg
               aria-label="Google logo"
               width="16"
