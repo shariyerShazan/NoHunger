@@ -33,7 +33,7 @@ function Extrasection() {
       <div className="w-[90%] mx-auto">
         <h2 className="text-5xl font-extrabold mb-8 text-center dark:text-white">Foods on NoHunger</h2>
 
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  justify-center gap-6">
           {availableFood.slice(0, 4).map((food, index) => (
             <div
               data-aos="fade-up"
