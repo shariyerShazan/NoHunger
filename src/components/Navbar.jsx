@@ -56,8 +56,8 @@ function Navbar() {
   }
 
   return (
-    <div className=' bg-violet-400 dark:bg-gray-900 dark:text-white shadow-md'>
-      <div className="navbar  w-[90%] mx-auto">
+    <div className=' bg-violet-400 dark:bg-gray-900 dark:text-white shadow-md w-full fixed'>
+      <div className="navbar  w-[90%] mx-auto ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
