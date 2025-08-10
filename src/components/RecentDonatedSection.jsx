@@ -34,7 +34,7 @@ function RecentDonatedSection() {
           Recent Donated Foods
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-4">
           {recentFoods.map((food, index) => (
             <div
               key={food._id}
