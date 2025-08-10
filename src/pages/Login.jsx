@@ -76,119 +76,100 @@ function Login() {
   }
 
   return (
-    <div className="flex justify-center items-center bg-violet-300 dark:bg-gray-800 min-h-[80vh]">
+    <div className="flex justify-center items-center min-h-[80vh] bg-gradient-to-br from-violet-200 to-violet-400 dark:from-gray-800 dark:to-gray-900 px-4">
       <ToastContainer />
-      <form onSubmit={handleLogin} action="" className=" dark:text-black">
-        <fieldset className="fieldset  bg-violet-100 dark:bg-white  rounded-box w-xs p-4 border-y-3 dark:border-y-18 dark:border-white  ">
-          <legend className="fieldset-legend text-xl dark:text-gray-800">
-            Login
-          </legend>
-
-          <label className="label text-md font-bold ">Email</label>
-          <input
-            type="email"
-            name="email"
-            className="input"
-            placeholder="Email"
-          />
-
-<div>
-<legend className="label text-md font-bold ">Role</legend>
-  <select name="role" defaultValue="Pick a browser" className="select cursor-pointer">
-    <option disabled={true}>Select a role</option>
-    <option value={'user'}>User</option>
-    <option value={'donor'}>Donor</option>
-  </select>
-</div>
-
-          <div className="relative">
-            <label className="label text-md font-bold">Password</label>
+      <div className="w-full max-w-md bg-white dark:bg-gray-800 shadow-lg rounded-xl p-8">
+        <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">
+          Welcome Back
+        </h2>
+        <form onSubmit={handleLogin} className="space-y-5">
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1">
+              Email
+            </label>
             <input
-              type={`${showPass ? "password" : "text"}`}
-              name="password"
-              className="input z-0 "
-              placeholder="Password"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-400 dark:bg-gray-700 dark:text-white dark:border-gray-600"
             />
-              {showPass ? (
-                <IoMdEye onClick={() => setShowPass(!showPass)} className="absolute left-64 top-7.5 cursor-pointer" size={20} />
-              ) : (
-                <IoMdEyeOff onClick={() => setShowPass(!showPass)} className=" absolute left-64 top-7.5 cursor-pointer" size={20} />
-              )}
           </div>
 
-          {
-            <span className="text-red-500">{errorMessage}</span>
-          }
+          {/* Role */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1">
+              Role
+            </label>
+            <select
+              name="role"
+              required
+              className="w-full px-4 py-2 border rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-violet-400 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+            >
+              <option value="">Select a role</option>
+              <option value="user">User</option>
+              <option value="donor">Donor</option>
+            </select>
+          </div>
 
-          <button type="submit" className="btn border-none shadow-none bg-violet-400 hover:bg-violet-500 mt-4">
+          {/* Password */}
+          <div className="relative">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1">
+              Password
+            </label>
+            <input
+              type={showPass ? "text" : "password"}
+              name="password"
+              placeholder="Enter your password"
+              required
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-400 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+            />
+            <div
+              onClick={() => setShowPass(!showPass)}
+              className="absolute right-3 top-9 text-gray-500 cursor-pointer"
+            >
+              {showPass ? <IoMdEyeOff size={20} /> : <IoMdEye size={20} />}
+            </div>
+          </div>
+
+          {errorMessage && (
+            <p className="text-sm text-red-500">{errorMessage}</p>
+          )}
+
+          {/* Login Button */}
+          <button
+            type="submit"
+            className="w-full bg-violet-500 text-white py-2 rounded-lg hover:bg-violet-600 transition-colors font-semibold"
+          >
             Login
           </button>
-          {
-            <span>Don't have an account? <Link to={'/register'} className="text-red-500 font-bold" >Register</Link> </span>
-          }
+        </form>
 
-          <button onClick={handleGoogleLoginUser} className="btn bg-white text-black border-[#e5e5e5] hover:scale-101 mt-2">
-            <svg
-              aria-label="Google logo"
-              width="16"
-              height="16"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-            >
-              <g>
-                <path d="m0 0H512V512H0" fill="#fff"></path>
-                <path
-                  fill="#34a853"
-                  d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-                ></path>
-                <path
-                  fill="#4285f4"
-                  d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-                ></path>
-                <path
-                  fill="#fbbc02"
-                  d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-                ></path>
-                <path
-                  fill="#ea4335"
-                  d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-                ></path>
-              </g>
-            </svg>
-            Login with Google as a User
-          </button>
-          {/* <button onClick={handleGoogleLoginDonor} className="btn bg-white text-black border-[#e5e5e5] hover:scale-101 mt-2">
-            <svg
-              aria-label="Google logo"
-              width="16"
-              height="16"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-            >
-              <g>
-                <path d="m0 0H512V512H0" fill="#fff"></path>
-                <path
-                  fill="#34a853"
-                  d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-                ></path>
-                <path
-                  fill="#4285f4"
-                  d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-                ></path>
-                <path
-                  fill="#fbbc02"
-                  d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-                ></path>
-                <path
-                  fill="#ea4335"
-                  d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-                ></path>
-              </g>
-            </svg>
-            Login with Google as a Donor
-          </button> */}
-        </fieldset>
-      </form>
+        {/* Google Login */}
+        <button
+          onClick={handleGoogleLoginUser}
+          className="w-full mt-4 flex items-center justify-center gap-2 border py-2 rounded-lg bg-white hover:bg-gray-100 transition-colors font-medium text-gray-700"
+        >
+          <img
+            src="https://www.svgrepo.com/show/355037/google.svg"
+            alt="Google"
+            className="w-5 h-5"
+          />
+          Login with Google as User
+        </button>
+
+        {/* Register Link */}
+        <p className="mt-4 text-center text-gray-600 dark:text-gray-300 text-sm">
+          Don't have an account?{" "}
+          <Link
+            to="/register"
+            className="text-violet-500 font-semibold hover:underline"
+          >
+            Register
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
