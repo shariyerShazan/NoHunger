@@ -70,9 +70,9 @@ function TopQuantitySection() {
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
                   <span className="font-semibold">Location:</span> {food.pickLocation}
                 </p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                {/* <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">
                   {food.additionalNotes.slice(0, 100)}...
-                </p>
+                </p> */}
                 <Link
                   to={`/food-details/${food._id}`}
                   className="inline-block bg-violet-500 hover:bg-violet-600 text-white text-center py-1 px-4 rounded shadow"
