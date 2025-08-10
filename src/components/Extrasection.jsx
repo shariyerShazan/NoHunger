@@ -64,9 +64,9 @@ function Extrasection() {
                 <p className="text-gray-700 dark:text-gray-300 mb-3">
                   <span className="font-semibold">Location:</span> {food.pickLocation}
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-4 mb-4">
+                {/* <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-4 mb-4">
                   {food.additionalNotes}
-                </p>
+                </p> */}
                 <Link
                   to={`/food-details/${food._id}`}
                   className="inline-block bg-violet-500 hover:bg-violet-600 text-white py-1 px-4 rounded shadow"
